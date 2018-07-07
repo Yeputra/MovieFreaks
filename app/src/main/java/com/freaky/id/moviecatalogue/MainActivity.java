@@ -22,6 +22,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     String value;
+    String lang = "EN";
     EditText mEtFind;
     Button mBtnFind;
     RecyclerView rvFilm;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected String doInBackground(String... params) {
                 RetrofitInterface retrofitInterface = API.getRetrofit().create(RetrofitInterface.class);
-                Call<Movies> movie = retrofitInterface.getMovieSearch(API_KEY, val);
+                Call<Movies> movie = retrofitInterface.getMovieSearch(API_KEY, lang, val);
                 movie.enqueue(new Callback<Movies>() {
                     @Override
                     public void onResponse(Call<Movies> call, Response<Movies> response) {
@@ -83,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
                 return "";
             }
         }.execute();
-
     }
 
 }
