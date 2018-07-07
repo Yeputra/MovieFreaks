@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                         movieList.clear();
                         movieList.addAll(response.body().getResults());
                         movieAdapter.notifyDataSetChanged();
-                        // Toast.makeText(MainActivity.this, "Sukses", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Sukses", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
