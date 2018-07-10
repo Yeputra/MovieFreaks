@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-            mEtFind = findViewById(R.id.et_title);
-            mBtnFind = findViewById(R.id.btn_cari);
-            rvFilm = findViewById(R.id.rv_film);
+         mEtFind = findViewById(R.id.et_title);
+         mBtnFind = findViewById(R.id.btn_cari);
+         rvFilm = findViewById(R.id.rv_film);
 
         rvFilm.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         movieAdapter = new MovieAdapter(movieList);
@@ -77,14 +77,12 @@ public class MainActivity extends AppCompatActivity {
                             movieList.clear();
                             movieList.addAll(response.body().getResults());
                             movieAdapter.notifyDataSetChanged();
-                            Toast.makeText(MainActivity.this, "Sukses", Toast.LENGTH_SHORT).show();
                         }
 
 
                     @Override
                     public void onFailure(Call<Movies> call, Throwable t) {
                         Log.e(MainActivity.class.getSimpleName(), "onFailure: ");
-                        // Toast.makeText(MainActivity.this, "Fail", Toast.LENGTH_SHORT).show();
                     }
                 });
                 return "";

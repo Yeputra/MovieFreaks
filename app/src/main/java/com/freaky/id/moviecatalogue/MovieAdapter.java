@@ -38,7 +38,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     public void onBindViewHolder(MovieViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: " + position);
         holder.tvTitle.setText(movieList.get(position).getTitle());
-        holder.tvDescription.setText(movieList.get(position).getOverview());
+        holder.tvOverview.setText(movieList.get(position).getOverview());
         holder.tvDate.setText(movieList.get(position).getReleaseDate());
         Glide.with(holder.itemView.getContext())
                 .load(RetrofitInterface.BASE_IMAGE + movieList.get(position).getPosterPath())
@@ -60,7 +60,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvTitle;
-        TextView tvDescription;
+        TextView tvOverview;
         TextView tvDate;
         ImageView ivPoster;
         CardView cvMovie;
@@ -69,7 +69,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             super(itemView);
 
             tvTitle = (TextView) itemView.findViewById(R.id.tv_title);
-            tvDescription = (TextView) itemView.findViewById(R.id.tv_description);
+            tvOverview = (TextView) itemView.findViewById(R.id.tv_overview);
             tvDate = (TextView) itemView.findViewById(R.id.tv_date);
             ivPoster = (ImageView) itemView.findViewById(R.id.iv_poster);
             cvMovie = (CardView) itemView.findViewById(R.id.cv_movie);
