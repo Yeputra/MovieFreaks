@@ -15,8 +15,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.GsonBuilder;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -40,6 +38,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     public void onBindViewHolder(MovieViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: " + position);
         holder.tvTitle.setText(movieList.get(position).getTitle());
+        holder.tvDescription.setText(movieList.get(position).getOverview());
+        holder.tvDate.setText(movieList.get(position).getReleaseDate());
         Glide.with(holder.itemView.getContext())
                 .load(RetrofitInterface.BASE_IMAGE + movieList.get(position).getPosterPath())
                 .dontAnimate()

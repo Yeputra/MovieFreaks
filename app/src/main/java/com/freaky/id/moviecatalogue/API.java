@@ -4,7 +4,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class API {
-    public static final String BASE_URL = "https://api.themoviedb.org/3/search/";
+    public static final String BASE_URL = "https://api.themoviedb.org/3/";
 
     public static Retrofit getRetrofit() {
         Retrofit retrofit = new Retrofit.Builder()

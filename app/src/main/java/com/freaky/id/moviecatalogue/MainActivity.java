@@ -1,12 +1,12 @@
 package com.freaky.id.moviecatalogue;
 
-import android.net.Network;
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +23,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     String value;
-    String lang = "EN";
+    final String lang = "EN";
     EditText mEtFind;
     Button mBtnFind;
     RecyclerView rvFilm;
@@ -50,15 +50,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 value = mEtFind.getText().toString();
-
-                actionSearch(value);
-
+                if(TextUtils.isEmpty(value)){
+                    Toast.makeText(MainActivity.this, "Field Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    actionSearch(mEtFind.getText().toString());
+                }
             }
         });
 
 
     }
 
+    @SuppressLint("StaticFieldLeak")
     private void actionSearch(final String val){
         new AsyncTask<String, String, String>() {
 
@@ -69,12 +73,13 @@ public class MainActivity extends AppCompatActivity {
                 movie.enqueue(new Callback<Movies>() {
                     @Override
                     public void onResponse(Call<Movies> call, Response<Movies> response) {
-                        Log.d(MainActivity.class.getSimpleName(), "onResponse: ");
-                        movieList.clear();
-                        movieList.addAll(response.body().getResults());
-                        movieAdapter.notifyDataSetChanged();
-                        Toast.makeText(MainActivity.this, "Sukses", Toast.LENGTH_SHORT).show();
-                    }
+                            Log.d(MainActivity.class.getSimpleName(), "onResponse: ");
+                            movieList.clear();
+                            movieList.addAll(response.body().getResults());
+                            movieAdapter.notifyDataSetChanged();
+                            Toast.makeText(MainActivity.this, "Sukses", Toast.LENGTH_SHORT).show();
+                        }
+
 
                     @Override
                     public void onFailure(Call<Movies> call, Throwable t) {
