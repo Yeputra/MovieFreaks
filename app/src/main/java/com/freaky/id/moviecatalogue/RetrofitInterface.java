@@ -14,4 +14,16 @@ public interface RetrofitInterface {
             @Query("query") String query
     );
 
+    @GET("movie/upcoming")
+    Call<Movies> getMovieUpcoming(
+            @Query("api_key") String apikey,
+            @Query("language") String langauge
+    );
+
+    @GET("movie/now_playing")
+    Call<Movies> getMovieNowPlaying(
+            @Query("api_key") String apikey,
+            @Query("language") String langauge
+    );
+
 }
