@@ -1,4 +1,4 @@
-package com.freaky.id.moviecatalogue;
+package com.freaky.id.moviecatalogue.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.freaky.id.moviecatalogue.model.Result;
+import com.freaky.id.moviecatalogue.API.RetrofitInterface;
+import com.freaky.id.moviecatalogue.R;
 import com.google.gson.GsonBuilder;
 
 public class DetailActivity extends AppCompatActivity {
@@ -26,6 +29,7 @@ public class DetailActivity extends AppCompatActivity {
         tvTitle = findViewById(R.id.tv_title);
         tvOverview = findViewById(R.id.tv_overview);
         tvDate = findViewById(R.id.tv_date);
+        getSupportActionBar().setTitle(movie.getTitle());
 
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
