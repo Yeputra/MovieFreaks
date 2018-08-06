@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Katalog Film</string>
+    <string name="upcoming">Segera Tayang</string>
+    <string name="nowplaying">Sedang Bermain</string>
+    <string name="search">Cari</string>
+    <string name="btn1">Detail Film</string>
+    <string name="btn2">Ubah Bahasa</string>
+    <string name="language">Ubah Bahasa</string>
+</resources>

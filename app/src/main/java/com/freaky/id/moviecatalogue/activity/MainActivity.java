@@ -28,7 +28,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    final String lang = "EN";
+    final String lang = "en-US";
     ProgressBar pb;
     RecyclerView rvFilm;
     private List<Result> movieList = new ArrayList<>();
@@ -77,6 +77,11 @@ public class MainActivity extends AppCompatActivity {
             case  R.id.search:
                 Intent search = new Intent (this, SearchActivity.class);
                 startActivity(search);
+                break;
+            case  R.id.language:
+                Intent language = new Intent (this, LanguageActivity.class);
+                startActivity(language);
+                break;
             default:
                 break;
         }
@@ -84,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showFilmNowplaying(){
-        getSupportActionBar().setTitle("Catalogue : NowPlaying");
+        getSupportActionBar().setTitle(String.format(getResources().getString(R.string.nowplaying)));
         new AsyncTask<String, String, String>() {
 
             @Override
@@ -113,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showFilmUpcoming(){
-        getSupportActionBar().setTitle("Catalogue : Upcoming");
+        getSupportActionBar().setTitle(String.format(getResources().getString(R.string.upcoming)));
         new AsyncTask<String, String, String>() {
 
             @Override
