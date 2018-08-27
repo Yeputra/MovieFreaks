@@ -7,18 +7,15 @@
     android:orientation="vertical"
     tools:context=".activity.DetailActivity">
 
-
     <ImageView
         android:id="@+id/iv_backdrop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
 
         <ImageView
             android:id="@+id/iv_poster"
@@ -31,7 +28,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
@@ -42,7 +38,6 @@
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
-
             <TextView
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
@@ -52,12 +47,14 @@
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold" />
 
-            <RatingBar
-                android:id="@+id/ratingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+
+            <ImageView
+                android:id="@+id/img_favorite"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_weight="1"
-                android:rating="1.7"/>
+                android:src="@drawable/ic_favorite_border_black_24dp"
+                android:layout_margin="8dp"/>
 
         </LinearLayout>
 
@@ -69,7 +66,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
         <android.support.v7.widget.CardView
             android:id="@+id/cv_movie_detail"
             android:layout_width="match_parent"
@@ -80,7 +76,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
 
                 <TextView
                     android:id="@+id/tv_overview1"
@@ -98,10 +93,10 @@
                     android:layout_margin="8dp"
                     android:text="Description" />
 
-
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
+
     </LinearLayout>
 
 </LinearLayout>
