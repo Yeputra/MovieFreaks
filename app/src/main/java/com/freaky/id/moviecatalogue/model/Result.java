@@ -48,6 +48,7 @@ private boolean adult;
 private String overview;
 @SerializedName("release_date")
 @Expose
+
 private String releaseDate;
 
 public int getVoteCount() {

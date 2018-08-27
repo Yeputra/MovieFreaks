@@ -43,7 +43,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         Log.d(TAG, "onBindViewHolder: " + position);
         holder.tvTitle.setText(movieList.get(position).getTitle());
         holder.tvOverview.setText(movieList.get(position).getOverview());
-        holder.tvDate.setText(movieList.get(position).getReleaseDate());
+        holder.tvDate.setText("Release Date : "+ movieList.get(position).getReleaseDate());
         Glide.with(holder.itemView.getContext())
                 .load(RetrofitInterface.BASE_IMAGE + movieList.get(position).getPosterPath())
                 .dontAnimate()

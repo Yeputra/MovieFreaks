@@ -13,7 +13,7 @@ import com.freaky.id.moviecatalogue.R;
 import com.google.gson.GsonBuilder;
 
 public class DetailActivity extends AppCompatActivity {
-    public ImageView ivPoster;
+    public ImageView ivPoster, ivBackdrop;
     public TextView tvTitle;
     public TextView tvOverview;
     public TextView tvDate;
@@ -29,16 +29,23 @@ public class DetailActivity extends AppCompatActivity {
         tvTitle = findViewById(R.id.tv_title);
         tvOverview = findViewById(R.id.tv_overview);
         tvDate = findViewById(R.id.tv_date);
+        ivBackdrop = findViewById(R.id.iv_backdrop);
         getSupportActionBar().setTitle(movie.getTitle());
 
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
         tvDate.setText(movie.getReleaseDate());
         Glide.with(this)
+                .load(RetrofitInterface.BASE_IMAGE_DETAIL + movie.getBackdropPath())
+                .dontAnimate()
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .fitCenter()
+                .into(ivBackdrop);
+        Glide.with(this)
                 .load(RetrofitInterface.BASE_IMAGE + movie.getPosterPath())
                 .dontAnimate()
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .centerCrop()
+                .fitCenter()
                 .into(ivPoster);
     }
 }

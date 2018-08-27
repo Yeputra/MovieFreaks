@@ -8,6 +8,7 @@ import retrofit2.http.Query;
 
 public interface RetrofitInterface {
     public static final String BASE_IMAGE = "https://image.tmdb.org/t/p/w185";
+    public static final String BASE_IMAGE_DETAIL = "https://image.tmdb.org/t/p/w342";
 
     @GET("search/movie")
     Call<Movies> getMovieSearch(
