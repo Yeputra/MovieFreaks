@@ -35,7 +35,7 @@ public class SearchActivity extends AppCompatActivity {
     ProgressBar pb;
     final String lang = "en-US";
     EditText mEtFind;
-    Button mBtnFind, mBtnUpcoming;
+    Button mBtnFind;
     RecyclerView rvFilm;
     private List<Result> movieList = new ArrayList<>();
     final String API_KEY = "799bca1b436e938ef79b6d003aefa933";
