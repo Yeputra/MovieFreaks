@@ -27,7 +27,6 @@ import static android.content.ContentValues.TAG;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
     private List<Result> movieList;
-    Cursor list;
 
     public MovieAdapter(List<Result> movieList) {
         this.movieList = movieList;
@@ -61,11 +60,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     public void setData(List<Result> movieList) {
         this.movieList = movieList;
-        notifyDataSetChanged();
-    }
-
-    public void replaceAll(Cursor items) {
-        list = items;
         notifyDataSetChanged();
     }
 
