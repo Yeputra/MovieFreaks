@@ -3,6 +3,9 @@
     <string name="upcoming">Segera Tayang</string>
     <string name="nowplaying">Sedang Bermain</string>
     <string name="search">Cari</string>
+    <string name="favorite">Digemari</string>
+    <string name="isfav">Film Digemari</string>
+    <string name="isNotfav">Kegemaran Dihapus</string>
     <string name="btn1">Detail Film</string>
     <string name="btn2">Ubah Bahasa</string>
     <string name="language">Ubah Bahasa</string>

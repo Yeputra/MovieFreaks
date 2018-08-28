@@ -3,6 +3,9 @@
     <string name="upcoming">Upcoming</string>
     <string name="nowplaying">Now Playing</string>
     <string name="search">Search</string>
+    <string name="favorite">Favorite</string>
+    <string name="isfav">Movie Favorited</string>
+    <string name="isNotfav">Movie Removed From Favorite</string>
     <string name="btn1">Movie Detail</string>
     <string name="btn2">Change language</string>
     <string name="language">Change Language</string>

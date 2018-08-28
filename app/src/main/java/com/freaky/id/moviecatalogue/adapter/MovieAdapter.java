@@ -2,6 +2,7 @@ package com.freaky.id.moviecatalogue.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -26,6 +27,7 @@ import static android.content.ContentValues.TAG;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
     private List<Result> movieList;
+    Cursor list;
 
     public MovieAdapter(List<Result> movieList) {
         this.movieList = movieList;
@@ -43,7 +45,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         Log.d(TAG, "onBindViewHolder: " + position);
         holder.tvTitle.setText(movieList.get(position).getTitle());
         holder.tvOverview.setText(movieList.get(position).getOverview());
-        holder.tvDate.setText("Release Date : "+ movieList.get(position).getReleaseDate());
+        holder.tvDate.setText("Release Date : " + movieList.get(position).getReleaseDate());
         Glide.with(holder.itemView.getContext())
                 .load(RetrofitInterface.BASE_IMAGE + movieList.get(position).getPosterPath())
                 .dontAnimate()
@@ -59,6 +61,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     public void setData(List<Result> movieList) {
         this.movieList = movieList;
+        notifyDataSetChanged();
+    }
+
+    public void replaceAll(Cursor items) {
+        list = items;
         notifyDataSetChanged();
     }
 
@@ -91,7 +98,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             Result data = movieList.get(position);
             final Context context = v.getContext();
             Intent intent = new Intent(context, DetailActivity.class);
-            intent.putExtra("movie",new GsonBuilder().create().toJson(data));
+            intent.putExtra("movie", new GsonBuilder().create().toJson(data));
             context.startActivity(intent);
         }
     }

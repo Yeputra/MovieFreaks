@@ -1,6 +1,8 @@
 package com.freaky.id.moviecatalogue.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.freaky.id.moviecatalogue.API.API;
+import com.freaky.id.moviecatalogue.adapter.FavoriteAdapter;
 import com.freaky.id.moviecatalogue.adapter.MovieAdapter;
 import com.freaky.id.moviecatalogue.model.Movies;
 import com.freaky.id.moviecatalogue.model.Result;
@@ -26,6 +29,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.freaky.id.moviecatalogue.provider.DatabaseContract.CONTENT_URI;
+
 public class MainActivity extends AppCompatActivity {
 
     final String lang = "en-US";
@@ -34,18 +39,22 @@ public class MainActivity extends AppCompatActivity {
     private List<Result> movieList = new ArrayList<>();
     final String API_KEY = "799bca1b436e938ef79b6d003aefa933";
     private MovieAdapter movieAdapter;
+    private FavoriteAdapter favAdapter;
+    private Cursor list;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        context = this;
         rvFilm = (findViewById(R.id.rv_film));
         pb = findViewById(R.id.progressBar);
         pb.setVisibility(View.VISIBLE);
 
         rvFilm.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        favAdapter = new FavoriteAdapter(list);
         movieAdapter = new MovieAdapter(movieList);
         rvFilm.setAdapter(movieAdapter);
         rvFilm.setHasFixedSize(true);
@@ -74,12 +83,17 @@ public class MainActivity extends AppCompatActivity {
                 pb.setVisibility(View.VISIBLE);
                 showFilmUpcoming();
                 break;
-            case  R.id.search:
-                Intent search = new Intent (this, SearchActivity.class);
+            case R.id.favorite:
+                rvFilm.setVisibility(View.INVISIBLE);
+                pb.setVisibility(View.VISIBLE);
+                showFilmFavorite();
+                break;
+            case R.id.search:
+                Intent search = new Intent(this, SearchActivity.class);
                 startActivity(search);
                 break;
-            case  R.id.language:
-                Intent language = new Intent (this, LanguageActivity.class);
+            case R.id.language:
+                Intent language = new Intent(this, LanguageActivity.class);
                 startActivity(language);
                 break;
             default:
@@ -88,8 +102,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void showFilmNowplaying(){
+    private void showFilmNowplaying() {
         getSupportActionBar().setTitle(String.format(getResources().getString(R.string.nowplaying)));
+        rvFilm.setAdapter(movieAdapter);
         new AsyncTask<String, String, String>() {
 
             @Override
@@ -117,8 +132,9 @@ public class MainActivity extends AppCompatActivity {
         }.execute();
     }
 
-    private void showFilmUpcoming(){
+    private void showFilmUpcoming() {
         getSupportActionBar().setTitle(String.format(getResources().getString(R.string.upcoming)));
+        rvFilm.setAdapter(movieAdapter);
         new AsyncTask<String, String, String>() {
 
             @Override
@@ -142,6 +158,34 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 return "";
+            }
+        }.execute();
+    }
+
+    private void showFilmFavorite() {
+        getSupportActionBar().setTitle(String.format(getResources().getString(R.string.favorite)));
+        rvFilm.setAdapter(favAdapter);
+        rvFilm.setVisibility(View.VISIBLE);
+        pb.setVisibility(View.INVISIBLE);
+        new AsyncTask<Void, Void, Cursor>() {
+
+            @Override
+            protected Cursor doInBackground(Void... voids) {
+                return context.getContentResolver().query(
+                        CONTENT_URI,
+                        null,
+                        null,
+                        null,
+                        null
+                );
+            }
+
+            @Override
+            protected void onPostExecute(Cursor cursor) {
+                super.onPostExecute(cursor);
+
+                list = cursor;
+                favAdapter.replaceAll(list);
             }
         }.execute();
     }

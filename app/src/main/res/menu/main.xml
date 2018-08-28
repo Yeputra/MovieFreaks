@@ -12,6 +12,11 @@
         android:orderInCategory="1"
         app:showAsAction="never"/>
     <item
+        android:id="@+id/favorite"
+        android:title="@string/favorite"
+        android:orderInCategory="1"
+        app:showAsAction="never"/>
+    <item
         android:id="@+id/search"
         android:title="@string/search"
         android:orderInCategory="2"

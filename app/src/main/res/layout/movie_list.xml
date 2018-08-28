@@ -17,22 +17,22 @@
 
         <ImageView
             android:id="@+id/iv_poster"
-            android:layout_width="140dp"
-            android:layout_height="220dp"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
             android:layout_margin="12dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="12dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="top"
-                android:layout_marginRight="12dp"
-                android:layout_marginTop="12dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -68,7 +68,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
                 android:background="@color/colorAccent"
                 android:clickable="true"
                 android:elevation="4dp"
