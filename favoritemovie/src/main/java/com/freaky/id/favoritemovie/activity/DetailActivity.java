@@ -53,7 +53,7 @@ public class DetailActivity extends AppCompatActivity {
                 .fitCenter()
                 .into(ivBackdrop);
         Glide.with(this)
-                .load("http://image.tmdb.org/t/p/w92" + movie.getPosterPath())
+                .load("https://image.tmdb.org/t/p/w185" + movie.getPosterPath())
                 .dontAnimate()
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .fitCenter()

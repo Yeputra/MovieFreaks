@@ -2,7 +2,6 @@ package com.freaky.id.moviecatalogue.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;

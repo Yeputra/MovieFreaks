@@ -84,7 +84,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
             tvOverview.setText(item.getOverview());
             tvDate.setText("Release Date : " + item.getReleaseDate());
             Glide.with(itemView.getContext())
-                    .load("http://image.tmdb.org/t/p/w92" + item.getPosterPath())
+                    .load("https://image.tmdb.org/t/p/w185" + item.getPosterPath())
                     .dontAnimate()
                     .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                     .centerCrop()
