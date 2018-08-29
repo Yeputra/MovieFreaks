@@ -46,7 +46,6 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-
         mEtFind = findViewById(R.id.et_title);
         mBtnFind = findViewById(R.id.btn_cari);
         rvFilm = findViewById(R.id.rv_film);
