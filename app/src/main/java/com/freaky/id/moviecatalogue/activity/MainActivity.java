@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -62,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
         showFilmNowplaying();
 
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

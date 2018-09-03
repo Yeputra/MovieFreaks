@@ -9,4 +9,6 @@
     <string name="btn1">Movie Detail</string>
     <string name="btn2">Change language</string>
     <string name="language">Change Language</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>
