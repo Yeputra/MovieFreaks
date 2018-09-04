@@ -75,11 +75,11 @@ public class MainActivity extends AppCompatActivity {
                 showFilmNowplaying();
                 break;
             case R.id.upcoming:
-                Intent upcoming = new Intent(MainActivity.this, UpcomingActivity.class);
+                Intent upcoming = new Intent(this, UpcomingActivity.class);
                 startActivity(upcoming);
                 break;
             case R.id.favorite:
-                Intent favorite = new Intent(MainActivity.this, FavoriteActivity.class);
+                Intent favorite = new Intent(this, FavoriteActivity.class);
                 startActivity(favorite);
                 break;
             case R.id.search:
