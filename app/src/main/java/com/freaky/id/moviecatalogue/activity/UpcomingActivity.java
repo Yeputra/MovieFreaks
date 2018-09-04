@@ -56,6 +56,21 @@ public class UpcomingActivity extends AppCompatActivity {
 
         showFilmUpcoming();
 
+        if(savedInstanceState!=null){
+            ArrayList<Result> list;
+            list = savedInstanceState.getParcelableArrayList("movie_list");
+            movieAdapter = new MovieAdapter(list);
+            rvFilm.setAdapter(movieAdapter);
+        }else{
+            showFilmUpcoming();
+        }
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList("movie_list", new ArrayList<>(movieList));
     }
 
     @Override

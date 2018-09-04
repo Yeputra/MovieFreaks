@@ -2,7 +2,6 @@ package com.freaky.id.moviecatalogue.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.freaky.id.moviecatalogue.API.API;
-import com.freaky.id.moviecatalogue.adapter.FavoriteAdapter;
 import com.freaky.id.moviecatalogue.adapter.MovieAdapter;
 import com.freaky.id.moviecatalogue.model.Movies;
 import com.freaky.id.moviecatalogue.model.Result;
@@ -29,7 +27,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.freaky.id.moviecatalogue.provider.DatabaseContract.CONTENT_URI;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,6 +55,20 @@ public class MainActivity extends AppCompatActivity {
 
         showFilmNowplaying();
 
+        if(savedInstanceState!=null){
+            ArrayList<Result> list;
+            list = savedInstanceState.getParcelableArrayList("movie_list");
+            movieAdapter = new MovieAdapter(list);
+            rvFilm.setAdapter(movieAdapter);
+        }else{
+            showFilmNowplaying();
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList("movie_list", new ArrayList<>(movieList));
     }
 
     @Override
@@ -98,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void showFilmNowplaying() {
         getSupportActionBar().setTitle(String.format(getResources().getString(R.string.nowplaying)));
-        rvFilm.setAdapter(movieAdapter);
         new AsyncTask<String, String, String>() {
 
             @Override
@@ -109,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Movies> call, Response<Movies> response) {
                         pb.setVisibility(View.INVISIBLE);
-                        rvFilm.setVisibility(View.VISIBLE);
                         movieList.clear();
                         movieList.addAll(response.body().getResults());
                         movieAdapter.notifyDataSetChanged();
