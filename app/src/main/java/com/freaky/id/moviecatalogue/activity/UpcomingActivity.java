@@ -1,25 +1,23 @@
 package com.freaky.id.moviecatalogue.activity;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.freaky.id.moviecatalogue.API.API;
 import com.freaky.id.moviecatalogue.API.RetrofitInterface;
 import com.freaky.id.moviecatalogue.R;
+import com.freaky.id.moviecatalogue.adapter.FavoriteAdapter;
 import com.freaky.id.moviecatalogue.adapter.MovieAdapter;
 import com.freaky.id.moviecatalogue.model.Movies;
 import com.freaky.id.moviecatalogue.model.Result;
@@ -31,48 +29,32 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SearchActivity extends AppCompatActivity {
+public class UpcomingActivity extends AppCompatActivity {
 
-    String value;
-    ProgressBar pb;
     final String lang = "en-US";
-    EditText mEtFind;
-    Button mBtnFind;
+    ProgressBar pb;
     RecyclerView rvFilm;
     private List<Result> movieList = new ArrayList<>();
     final String API_KEY = "799bca1b436e938ef79b6d003aefa933";
     private MovieAdapter movieAdapter;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_upcoming);
 
-        mEtFind = findViewById(R.id.et_title);
-        mBtnFind = findViewById(R.id.btn_cari);
-        rvFilm = findViewById(R.id.rv_film);
+        context = this;
+        rvFilm = (findViewById(R.id.rv_film));
         pb = findViewById(R.id.progressBar);
-        pb.setVisibility(View.INVISIBLE);
+        pb.setVisibility(View.VISIBLE);
 
-        rvFilm.setLayoutManager(new LinearLayoutManager(SearchActivity.this));
+        rvFilm.setLayoutManager(new LinearLayoutManager(UpcomingActivity.this));
         movieAdapter = new MovieAdapter(movieList);
         rvFilm.setAdapter(movieAdapter);
         rvFilm.setHasFixedSize(true);
 
-        mBtnFind.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pb.setVisibility(View.VISIBLE);
-                value = mEtFind.getText().toString();
-                if(TextUtils.isEmpty(value)){
-                    Toast.makeText(SearchActivity.this, "Field Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    actionSearch(mEtFind.getText().toString());
-                }
-            }
-        });
-
+        showFilmUpcoming();
 
     }
 
@@ -89,13 +71,13 @@ public class SearchActivity extends AppCompatActivity {
                 Intent nowplaying = new Intent(this, MainActivity.class);
                 startActivity(nowplaying);
                 break;
-            case R.id.upcoming:
-                Intent upcoming = new Intent(this, UpcomingActivity.class);
-                startActivity(upcoming);
-                break;
             case R.id.favorite:
                 Intent favorite = new Intent(this, FavoriteActivity.class);
                 startActivity(favorite);
+                break;
+            case R.id.search:
+                Intent search = new Intent(this, SearchActivity.class);
+                startActivity(search);
                 break;
             case R.id.language:
                 Intent language = new Intent(this, LanguageActivity.class);
@@ -107,19 +89,19 @@ public class SearchActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressLint("StaticFieldLeak")
-    private void actionSearch(final String val){
+    private void showFilmUpcoming() {
+        getSupportActionBar().setTitle(String.format(getResources().getString(R.string.upcoming)));
         new AsyncTask<String, String, String>() {
 
             @Override
             protected String doInBackground(String... params) {
                 RetrofitInterface retrofitInterface = API.getRetrofit().create(RetrofitInterface.class);
-                Call<Movies> movie = retrofitInterface.getMovieSearch(API_KEY, lang, val);
+                Call<Movies> movie = retrofitInterface.getMovieUpcoming(API_KEY, lang);
                 movie.enqueue(new Callback<Movies>() {
                     @Override
                     public void onResponse(Call<Movies> call, Response<Movies> response) {
-                        Log.d(MainActivity.class.getSimpleName(), "onResponse: ");
                         pb.setVisibility(View.INVISIBLE);
+                        rvFilm.setVisibility(View.VISIBLE);
                         movieList.clear();
                         movieList.addAll(response.body().getResults());
                         movieAdapter.notifyDataSetChanged();
@@ -135,6 +117,4 @@ public class SearchActivity extends AppCompatActivity {
             }
         }.execute();
     }
-
 }
-
