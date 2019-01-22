@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             protected String doInBackground(String... params) {
-                RetrofitInterface retrofitInterface = API.getRetrofit().create(RetrofitInterface.class);
+                RetrofitInterface retrofitInterface = API.getRetrofit(API.BASE_URL).create(RetrofitInterface.class);
                 Call<Movies> movie = retrofitInterface.getMovieNowPlaying(API_KEY, lang);
                 movie.enqueue(new Callback<Movies>() {
                     @Override

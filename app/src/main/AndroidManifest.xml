@@ -55,6 +55,16 @@
                 android:resource="@xml/favorite_movie_widget_info" />
         </receiver>
 
+        <receiver
+            android:name=".services.ReminderReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver
+            android:name=".services.ReleaseReminderReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
         <service
             android:name=".widget.StackWidgetService"
             android:enabled="true"

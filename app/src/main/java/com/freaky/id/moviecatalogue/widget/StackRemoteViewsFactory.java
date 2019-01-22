@@ -68,7 +68,8 @@ public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
         Bitmap bitmap = null;
         try {
             bitmap = Glide.with(context)
-                    .load(RetrofitInterface.BASE_IMAGE + item.getPosterPath()).asBitmap()
+                    .load(RetrofitInterface.BASE_IMAGE + item.getPosterPath())
+                    .asBitmap()
                     .into(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
                     .get();
         } catch (InterruptedException e) {
