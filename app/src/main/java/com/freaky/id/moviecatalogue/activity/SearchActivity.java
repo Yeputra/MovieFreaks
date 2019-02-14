@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.freaky.id.moviecatalogue.API.API;
 import com.freaky.id.moviecatalogue.API.RetrofitInterface;
+import com.freaky.id.moviecatalogue.BuildConfig;
 import com.freaky.id.moviecatalogue.R;
 import com.freaky.id.moviecatalogue.adapter.MovieAdapter;
 import com.freaky.id.moviecatalogue.model.Movies;
@@ -40,7 +41,7 @@ public class SearchActivity extends AppCompatActivity {
     Button mBtnFind;
     RecyclerView rvFilm;
     private List<Result> movieList = new ArrayList<>();
-    final String API_KEY = "799bca1b436e938ef79b6d003aefa933";
+    final String API_KEY = BuildConfig.your_api_key;
     private MovieAdapter movieAdapter;
 
     @Override
