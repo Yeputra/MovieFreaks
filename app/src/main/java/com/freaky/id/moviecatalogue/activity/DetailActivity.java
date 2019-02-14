@@ -42,6 +42,7 @@ public class DetailActivity extends AppCompatActivity {
         movie = new GsonBuilder().create().fromJson(this.getIntent().getStringExtra("movie"), Result.class);
 
         rb = findViewById(R.id.ratingBar);
+
         voteAvg = findViewById(R.id.tv_vote_avg);
         imgFav = findViewById(R.id.img_favorite);
         ivPoster = findViewById(R.id.iv_poster);
